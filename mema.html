@@ -1,0 +1,113 @@
+<div class="single-pro-image">
+  <img src="<?php echo $prodImage ?>" width="100%" id="prodMainImg" alt="" />
+  <div class="small-img-group">
+    <div class="small-img-col">
+      <img
+        src="<?php echo $prodImage ?>"
+        width="100%"
+        class="prodSmallImg"
+        alt=""
+      />
+    </div>
+    <div class="small-img-col">
+      <img
+        src="<?php echo $prodImage2 ?>"
+        width="100%"
+        class="prodSmallImg"
+        alt=""
+      />
+    </div>
+    <div class="small-img-col">
+      <img
+        src="<?php echo $prodImage3 ?>"
+        width="100%"
+        class="prodSmallImg"
+        alt=""
+      />
+    </div>
+    <div class="small-img-col">
+      <img
+        src="<?php echo $prodImage4 ?>"
+        width="100%"
+        class="prodSmallImg"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+<div class="single-pro-details">
+  <h4 class="text-center"><?php echo $prodName ?></h4>
+  <h2 class="text-center"><?php echo $prodPrice ?></h2>
+
+  <form class="row py-3 d-flex justify-content-center" action="fetchData.php">
+    <div class="col-auto">
+      <input
+        type="radio"
+        class="btn-check"
+        name="size"
+        id="smallSize"
+        value="small"
+        checked
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-dark" for="smallSize">S</label>
+    </div>
+    <div class="col-auto">
+      <input
+        type="radio"
+        class="btn-check"
+        name="size"
+        id="mediumSize"
+        value="medium"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-dark" for="mediumSize">M</label>
+    </div>
+    <div class="col-auto">
+      <input
+        type="radio"
+        class="btn-check"
+        name="size"
+        id="largeSize"
+        value="large"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-dark" for="largeSize">L</label>
+    </div>
+    <input
+      type="hidden"
+      name="product-id"
+      class="product-id"
+      value="<?php"
+      echo
+      $id
+      ?
+    />>
+  </form>
+  <h6 class="text-center" id="stocksNumber"></h6>
+  <div class="text-center">
+    <button class="add-bag btn btn-outline-dark btn-lg"></button>
+  </div>
+
+  <h4>Short Description</h4>
+  <span>
+    <?php echo $prodDesc ?>
+  </span>
+</div>
+
+<button class="remove-btn btn">
+  <span><i class="fa-solid fa-trash" style="font-size: 24px"></i></span>
+</button>
+
+<input type="text" value="1" style="display: none" />
+
+<form method="POST"></form>
+
+<input type="text" />
+
+<input
+  class="amount-number"
+  type="text"
+  style="width: 30px"
+  value="${item.inBag}"
+/>
