@@ -571,13 +571,68 @@ function manageQuantity() {
         "n" +
         increaseButtons[i].parentElement.previousElementSibling
           .previousElementSibling.previousElementSibling.textContent;
+      let currentSize =
+        increaseButtons[i].parentElement.previousElementSibling
+          .previousElementSibling.previousElementSibling.textContent;
+      let id;
+      let smallStocks;
+      let mediumStocks;
+      let largeStocks;
 
-      bagItems[currentProduct].inBag += 1;
-      bagNumbers(bagItems[currentProduct]);
-      totalCost(bagItems[currentProduct]);
-      localStorage.setItem("productsInBag", JSON.stringify(bagItems));
-      displayBag();
-      console.log("after 4 method", bagItems[currentProduct].inBag);
+      $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "./php/stocksLogic.php",
+        data: {
+          id: id,
+          smallStocks: smallStocks,
+          mediumStocks: mediumStocks,
+          largeStocks: largeStocks
+        },
+        beforeSend: function () {
+          increaseButtons[i].disabled = true;
+        },
+        success: function (data) {
+          let selectedProd = data.find(
+            data => data.id === bagItems[currentProduct].id
+          );
+          console.log(selectedProd);
+          if (currentSize === "small") {
+            if (bagItems[currentProduct].inBag < selectedProd.smallStocks) {
+              bagItems[currentProduct].inBag += 1;
+              bagNumbers(bagItems[currentProduct]);
+              totalCost(bagItems[currentProduct]);
+              localStorage.setItem("productsInBag", JSON.stringify(bagItems));
+              displayBag();
+            }
+          } else if (currentSize === "medium") {
+            if (bagItems[currentProduct].inBag < selectedProd.mediumStocks) {
+              bagItems[currentProduct].inBag += 1;
+              bagNumbers(bagItems[currentProduct]);
+              totalCost(bagItems[currentProduct]);
+              localStorage.setItem("productsInBag", JSON.stringify(bagItems));
+              displayBag();
+            }
+          } else if (currentSize === "large") {
+            if (bagItems[currentProduct].inBag < selectedProd.largeStocks) {
+              bagItems[currentProduct].inBag += 1;
+              bagNumbers(bagItems[currentProduct]);
+              totalCost(bagItems[currentProduct]);
+              localStorage.setItem("productsInBag", JSON.stringify(bagItems));
+              displayBag();
+            }
+          }
+        },
+        complete: function (data) {
+          increaseButtons[i].disabled = false;
+        }
+      });
+      // bagItems[currentProduct].inBag += 1;
+      // bagNumbers(bagItems[currentProduct]);
+      // totalCost(bagItems[currentProduct]);
+      // localStorage.setItem("productsInBag", JSON.stringify(bagItems));
+      // displayBag();
+      // console.log("after 4 method", bagItems[currentProduct].inBag);
     });
   }
 }

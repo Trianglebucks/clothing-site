@@ -313,18 +313,6 @@ require_once("php/createDB.php");
     <script src="./bootstrap-5.2.3-dist/js/bootstrap.min.js"></script>
     <!-- custom js -->
     <script src="./js/script.js"></script>
-    <!-- stocks availability logic -->
-    <script>
-
-      let smallStocks = parseInt("<?=  $smallStocks?>");
-      let mediumStocks = parseInt("<?=  $mediumStocks?>");
-      let largeStocks = parseInt("<?=  $largeStocks?>");
-
-      $(function() {
-        fetchStocks(smallStocks, mediumStocks, largeStocks);
-      });
-
-    </script>
 
   </body>
 </html>
